@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Nina's First Adventure (Prototype)</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#14121a">
+  <link rel="icon" href="assets/ico_notebook.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="title">Nina's First Adventure</div>
+        <div class="subtitle">Prototype v1</div>
+      </div>
+      <button id="btnMenuTop" class="iconbtn" aria-label="Menu">
+        <img src="assets/ico_menu.png" alt="">
+      </button>
+    </header>
+
+    <main class="stageWrap">
+      <canvas id="stage" width="640" height="360" aria-label="Game view"></canvas>
+      <div id="toast" class="toast" aria-live="polite"></div>
+    </main>
+
+    <section class="dialogue" aria-live="polite">
+      <div class="speaker" id="speaker"></div>
+      <div class="line" id="line"></div>
+    </section>
+
+    <nav class="bottombar" aria-label="Controls">
+      <div class="verbs" role="group" aria-label="Verbs">
+        <button class="verb" data-verb="look"><img src="assets/ico_look.png" alt=""><span>LOOK</span></button>
+        <button class="verb" data-verb="use"><img src="assets/ico_use.png" alt=""><span>USE</span></button>
+        <button class="verb" data-verb="talk"><img src="assets/ico_talk.png" alt=""><span>TALK</span></button>
+      </div>
+
+      <div class="hud">
+        <button id="btnNotebook" class="hudbtn"><img src="assets/ico_notebook.png" alt=""><span>Notebook</span></button>
+        <button id="btnObjective" class="hudbtn"><img src="assets/ico_objective.png" alt=""><span>Objective</span></button>
+        <button id="btnHint" class="hudbtn"><img src="assets/ico_hint.png" alt=""><span>Ask Cas</span></button>
+      </div>
+
+      <div class="inventory" aria-label="Inventory">
+        <div class="invLabel">Inventory</div>
+        <div id="invSlots" class="invSlots"></div>
+      </div>
+    </nav>
+  </div>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="modalCard">
+      <div class="modalHeader">
+        <div class="modalTitle" id="modalTitle">Menu</div>
+        <button id="btnCloseModal" class="iconbtn" aria-label="Close"><span>✕</span></button>
+      </div>
+      <div id="modalBody" class="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+    }
+  </script>
+</body>
+</html>
